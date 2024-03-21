@@ -1,0 +1,160 @@
+Common.name,Scientific_name,Domain,Kingdom,Phylum,Class,Order,Family,Genus,Species,Endo_ectotherm,Adult_mass_grams,log_mass,Lifespan_years,Loglifespan,Average_Telomere_Length_kb,logTL,Telomerase_activity
+Adelie penguin,Pygoscelis_adeliae,Eukaryota,Metazoa,Chordata,Aves,Sphenisciformes,Spheniscidae,Pygoscelis,adeliae,endo,5020,3.700703717,20,1.301029996,7.35,0.866287339,NA
+Alpine swift ,Tachymarptis_melba,Eukaryota,Metazoa,Chordata,Aves,Apodiformes,Apodidae,Tachymarptis,melba,endo,102.7,2.011570444,26,1.414973348,18.783,1.273764959,NA
+American bald eagle ,Haliaeetus_leucocephalus,Eukaryota,Metazoa,Chordata,Aves,Accipitriformes,Accipitridae,Haliaeetus,leucocephalus,endo,3175,3.50174373,48,1.681241237,2.1,0.322219295,NA
+American flamengo,Phoenicopterus_ruber,Eukaryota,Metazoa,Chordata,Aves,Phoenicopteriformes,Phoenicopteridae,Phoenicopterus,ruber,endo,3066,3.486572151,44,1.643452676,18.31,1.262688344,NA
+American kestrel  ,Falco_sparverius,Eukaryota,Metazoa,Chordata,Aves,Falconiformes,Falconidae,Falco,sparverius,endo,117,2.068185862,17,1.230448921,30.2,1.480006943,NA
+Andouin's gull,Ichthyaetus_audouinii,Eukaryota,Metazoa,Chordata,Aves,Charadriiformes,Laridae,Ichthyaetus,audouinii,endo,535,2.728353782,25,1.397940009,26.55,1.424064525,NA
+Barn swallow ,Hirundo_rustica,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Hirundinidae,Hirundo,rustica,endo,18.3,1.26245109,16,1.204119983,9.57,0.980911938,NA
+Barnacle goose ,Branta_leucopsis,Eukaryota,Metazoa,Chordata,Aves,Anseriformes,Anatidae,Branta,leucopsis,endo,1687,3.227115083,28.2,1.450249108,11.75,1.070037867,NA
+Black guillemot,Cepphus_grylle,Eukaryota,Metazoa,Chordata,Aves,Charadriiformes,Alcidae,Cepphus,grylle,endo,427.5,2.630936119,29.9,1.475671188,14.59,1.164055292,NA
+Black-browed albatross,Thalassarche_melanophrys,Eukaryota,Metazoa,Chordata,Aves,Procellariiformes,Diomedeidae,Diomedea,melanophrys,endo,3232,3.509471352,43.7,1.640481437,9.26,0.966610987,NA
+Black-legged kittiwake,Rissa_tridactyla,Eukaryota,Metazoa,Chordata,Aves,Charadriiformes,Laridae,Rissa,tridactyla,endo,317,2.501059262,28.5,1.45484486,9.805,0.991447598,NA
+Blackbird ,Turdus_merula,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Turdidae,Turdus,merula,endo,103.2,2.013679697,21.8,1.338456494,11.05,1.043362278,NA
+Chicken ,Gallus_gallus,Eukaryota,Metazoa,Chordata,Aves,Galliformes,Phasianidae,Gallus,gallus,endo,779.8,2.891983231,30,1.477121255,19.7,1.294466226,0
+common tern ,Sterna_hirundo,Eukaryota,Metazoa,Chordata,Aves,Charadriiformes,Sternidae,Sterna,hirundo,endo,120,2.079181246,33,1.51851394,12.8,1.10720997,1
+Dunlin,Calidris_alpina,Eukaryota,Metazoa,Chordata,Aves,Charadriiformes,Scolopacidae,Calidris,alpina,endo,52.5,1.720159303,28.8,1.459392488,13.81,1.140193679,NA
+Eurasian oystercatcher,Haematopus_ostralegus,Eukaryota,Metazoa,Chordata,Aves,Charadriiformes,Haematopotidae,Haematopus,ostralegus,endo,480,2.681241237,43.3,1.636487896,9.79,0.990782692,NA
+European shag ,Phalacrocorax_aristotelis,Eukaryota,Metazoa,Chordata,Aves,Pelecaniformes,Phalacrocoracidae,Phalacrocorax,aristotelis,endo,1773,3.248708736,30.6,1.485721426,8.4,0.924279286,NA
+Florida scrub jay,Aphelocoma_coerulescens,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Corvidae,Aphelocoma,coerulescens,endo,78.7,1.895974732,15,1.176091259,5.53,0.742725131,NA
+Golden pheasant ,Chrysolophus_pictus,Eukaryota,Metazoa,Chordata,Aves,Galliformes,Phasianidae,Chrysolophus,pictus,endo,625,2.795880017,13.4,1.127104798,3.2,0.505149978,NA
+Gouldian finch,Erythrura_gouldiae,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Estrildidae,Erythrura,gouldiae,endo,12,1.079181246,6,0.77815125,41.4,1.617000341,NA
+Great Frigatebirds ,Fregata_minor,Eukaryota,Metazoa,Chordata,Aves,Pelecaniformes,Fregatidae,Fregata,minor,endo,1400,3.146128036,43,1.633468456,7.09,0.850646235,NA
+Great tit,Parus_major,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Paridae,Parus,major,endo,17.9,1.252853031,15.4,1.187520721,49.26,1.692494408,NA
+Greater sandhill cranes ,Grus_antigone,Eukaryota,Metazoa,Chordata,Aves,Gruiformes,Gruidae,Grus,antigone,endo,8663,3.937668314,41.8,1.621176282,10,1,NA
+Griffon vulture,Gyps_fulvus,Eukaryota,Metazoa,Chordata,Aves,Accipitriformes,Accipitridae,Gyps,fulvus,endo,7436,3.871339381,41.4,1.617000341,17.348,1.239249413,NA
+jackdaws ,Corvus_monedula,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Corvidae,Coloeus,monedula,endo,246,2.390935107,20.3,1.307496038,5.52,0.741939078,NA
+kakapo ,Strigops_habroptila,Eukaryota,Metazoa,Chordata,Aves,Psittaciformes,Strigopidae,Strigops,habroptila,endo,1750,3.243038049,60,1.77815125,15.655,1.194653072,NA
+Leach storm petrel ,Oceanodroma_leucorhoa,Eukaryota,Metazoa,Chordata,Aves,Procellariiformes,Hydrobatidae,Oceanodroma,leucorhoa,endo,44.6,1.649334859,36,1.556302501,19.03,1.279438788,1
+Lesser black-back gull ,Larus_fuscus,Eukaryota,Metazoa,Chordata,Aves,Charadriiformes,Laridae,Larus,fuscus,endo,766.2,2.884342148,34.9,1.542825427,12.5,1.096910013,NA
+Mangrove swallow,Tachycineta_albilinea,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Hirundinidae,Tachynicineta,albilinea,endo,15,1.176091259,10.6,1.025305865,6.28,0.797959644,NA
+Masked bobwhite quail,Colinus_virginianus,Eukaryota,Metazoa,Chordata,Aves,Galliformes,Odontophoridae,Colinus,virginianus,endo,194,2.28780173,6.4,0.806179974,23.4,1.369215857,NA
+Northern fulmar,Fulmarus_glacialis,Eukaryota,Metazoa,Chordata,Aves,Procellariiformes,Procellaridae,Fulmarus,glacialis,endo,908,2.958085849,51,1.707570176,14.25,1.153814864,NA
+Northern Giant petrel ,Macronectes_halli,Eukaryota,Metazoa,Chordata,Aves,Procellariiformes,Procellaridae,Macronectes,halli,endo,4313,3.634779458,35.4,1.549003262,8.575,0.933234129,NA
+Northern goshawks ,Accipiter_gentilis,Eukaryota,Metazoa,Chordata,Aves,Accipitriformes,Accipitridae,Accipiter,gentilis,endo,1044,3.018700499,22,1.342422681,1.3,0.113943352,NA
+Orange-winged Amazon parrot ,Amazona_amazonica,Eukaryota,Metazoa,Chordata,Aves,Psittaciformes,Psittacidae,Amazona,amazonica,endo,370,2.568201724,30,1.477121255,11.8,1.071882007,NA
+Red tail hawk  ,Buteo_jamaicensis,Eukaryota,Metazoa,Chordata,Aves,Accipitriformes,Accipitridae,Buteo,jamaicensis,endo,1362,3.134177108,30.7,1.487138375,13.3,1.123851641,NA
+Red-eyed vireo ,Vireo_olivaceus,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Vireonidae,Vireo,olivaceus,endo,17,1.230448921,10.2,1.008600172,8.1,0.908485019,NA
+Red-footed booby,Sula_sula,Eukaryota,Metazoa,Chordata,Aves,Pelecaniformes,Pelecani,Sulidae,sula,endo,1017,3.007320953,23,1.361727836,14.8,1.170261715,NA
+Ruff,Philomachus_pugnax,Eukaryota,Metazoa,Chordata,Aves,Charadriiformes,Scolopacidae,Philomachus,pugnax,endo,136,2.133538908,13.9,1.1430148,11.14,1.046885191,NA
+Sand martin,Riparia_riparia,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Hirundinidae,Riparia,riparia,endo,12.7,1.103803721,10.1,1.004321374,21.26,1.32756326,NA
+Savannah sparrow,Passerculus_sandwichensis,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Emberizidae,Passeculus,sandwichensis,endo,20.2,1.305351369,18,1.255272505,11.63,1.065579715,NA
+Southern Giant Petrel ,Macronectes_giganteus,Eukaryota,Metazoa,Chordata,Aves,Procellariiformes,Procellaridae,Macronectes,giganteus,endo,3698,3.567966907,47,1.672097858,8.08,0.907411361,NA
+Swainson's hawk ,Buteo_swainsoni,Eukaryota,Metazoa,Chordata,Aves,Accipitriformes,Accipitridae,Buteo,swainsoni,endo,980.64,2.991509604,24.9,1.396199347,42.4,1.627365857,NA
+thick-billed murre ,Uria_lomvia,Eukaryota,Metazoa,Chordata,Aves,Charadriiformes,Alcidae,Uria,lomvia,endo,964,2.984077034,29,1.462397998,7.7,0.886490725,NA
+Transvolcanic jay,Aphelocoma_ultramarina,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Corvidae,Aphelocoma,ultramarina,endo,130,2.113943352,25,1.397940009,13.6,1.133538908,NA
+tree swallow ,Tachycineta_bicolor,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Hirundinidae,Tachynicineta,bicolor,endo,19,1.278753601,12.1,1.08278537,13.6,1.133538908,1
+Wandering albatross ,Diomedea_exulans,Eukaryota,Metazoa,Chordata,Aves,Procellariiformes,Diomedeidae,Diomedea,exulans,endo,7047,3.848004271,50,1.698970004,9.9,0.995635195,NA
+White-rumped munia,Lonchura_striata,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Estrildidae,Lonchura,striata,endo,12.3,1.089905111,10,1,16.36,1.213783299,NA
+Wild turkey  ,Meleagris_gallopavo,Eukaryota,Metazoa,Chordata,Aves,Galliformes,Phasianidae,Meleagris,gallopavo,endo,6050,3.781755375,13,1.113943352,13.9,1.1430148,NA
+Zebra finch,Taeniopygia_guttata,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Estrildidae,Taeniopygia,guttata,endo,12,1.079181246,12,1.079181246,13.7,1.136720567,1
+Corys shearwaters,Calonectris_diomedea,Eukaryota,Metazoa,Chordata,Aves,Procellariiformes,Procellaridae,Calonectris,diomedea,endo,535,2.728353782,24.8,1.394451681,8.66,0.937517892,NA
+Black-tailed gull,Larus_crassirostris,Eukaryota,Metazoa,Chordata,Aves,Charadriiformes,Laridae,Larus,crassirostris,endo,600,2.77815125,28,1.447158031,11.43,1.05804623,NA
+Seychelles warblers,Acrocephalus_sechellensis,Eukaryota,Metazoa,Chordata,Aves,Passeriformes,Acrocephalidae,Acrocephalus,sechellensis,endo,15.9,1.201397124,17,1.230448921,3.95,0.596597096,NA
+American eel,Anguilla_rostrata,Eukaryota,Metazoa,Chordata,Fish,Anguilliformes,Anguilla,Anguilla,rostrata,ecto,4032,3.605520523,50,1.698970004,12.5,1.096910013,1
+Japanese rice fish,Oryzias_latipes,Eukaryota,Metazoa,Chordata,Fish,Beloniformes,Adrianichthyidae,Oryzias,latipes,ecto,0.7,-0.15490196,5,0.698970004,7.5,0.875061263,1
+Skipjack trevally,Pseudocaranx_wrighti,Eukaryota,Metazoa,Chordata,Fish,Carangiformes,Carangidae,Pseudocaranx,wrighti,ecto,3000,3.477121255,13,1.113943352,4.06,0.608526034,NA
+Nile tilapia,Oreochromis_niloticus,Eukaryota,Metazoa,Chordata,Fish,Cichliformes,Cichlidae,Oreochromis,niloticus,ecto,2400,3.380211242,9,0.954242509,7,0.84509804,NA
+Goldfish,Carassius_auratus,Eukaryota,Metazoa,Chordata,Fish,Cypriniformes,Cyprinidae,Carassius,auratus,ecto,1600,3.204119983,41,1.612783857,4.6,0.662757832,NA
+Common carp,Cyprinus_carpio,Eukaryota,Metazoa,Chordata,Fish,Cypriniformes,Cyprinidae,Cyprinus,carpio,ecto,10600,4.025305865,47,1.672097858,4.62,0.664641976,NA
+Zebrafish,Danio_rerio,Eukaryota,Metazoa,Chordata,Fish,Cypriniformes,Cyprinidae,Danio,rerio,ecto,0.5,-0.301029996,5.5,0.740362689,16,1.204119983,1
+Southern platyfish,Xiphophorus_maculatus,Eukaryota,Metazoa,Chordata,Fish,Cyprinodontiformes,Poeciliidae,Xiphophorus,maculatus,ecto,1.8,0.255272505,5,0.698970004,4.25,0.62838893,NA
+Green swordtail,Xiphophorus_hellerii,Eukaryota,Metazoa,Chordata,Fish,Cyprinodontiformes,Poeciliidae,Xiphophorus,hellerii,ecto,3.7,0.568201724,5,0.698970004,4.25,0.62838893,NA
+African killifish,Nothobranchius_furzeri,Eukaryota,Metazoa,Chordata,Fish,Cyprinodontiformes,Nothobranchiidae,Nothobranchius,furzeri,ecto,2,0.301029996,0.23,-0.638272164,6.61,0.820201459,1
+Bluefin Ntho,Nothobranchius_rachovii,Eukaryota,Metazoa,Chordata,Fish,Cyprinodontiformes,Nothobranchiidae,Nothobranchius,rachovii,ecto,1.3,0.113943352,1.5,0.176091259,7.77,0.890421019,NA
+Mummichog,Fundulus_heteroclitus,Eukaryota,Metazoa,Chordata,Fish,Cyprinodontiformes,Fundulidae,Fundulus,heteroclitus,ecto,12.3,1.089905111,4,0.602059991,6,0.77815125,1
+Atlantic cod,Gadus_morhua,Eukaryota,Metazoa,Chordata,Fish,Gadiformes,Gadidae,Gadus,morhua,ecto,52800,4.722633923,25,1.397940009,11.374,1.055913224,1
+European seabass,Dicentrarchus_labrax,Eukaryota,Metazoa,Chordata,Fish,Moroniformes,Moronidae,Dicentrarchus,labrax,ecto,6600,3.819543936,15,1.176091259,3.44,0.536558443,NA
+Blackhead seabream,Acanthopagrus_schlegelii,Eukaryota,Metazoa,Chordata,Fish,Perciformes,Sparidae,Acanthopagrus,schlegeli,ecto,3200,3.505149978,7,0.84509804,5.56,0.745074792,NA
+Southern goatfish,Upeneichthys_vlamingii,Eukaryota,Metazoa,Chordata,Fish,Perciformes,Mullidae,Upeneichthys,vlamingii,ecto,677,2.830588669,10,1,5.48,0.738780558,NA
+Golden perch,Macquaria_ambigua,Eukaryota,Metazoa,Chordata,Fish,Perciformes,Percichthyidae,Macquaria,ambigua,ecto,13200,4.120573931,20,1.301029996,6.14,0.788168371,NA
+Mangrove red snapper,Lutjanus_argentimaculatus,Eukaryota,Metazoa,Chordata,Fish,Perciformes,Lutjanidae,Lutjanus,argentimaculatus,ecto,4785,3.679881942,18,1.255272505,5.26,0.720985744,NA
+Rainbow trout,Oncorhynchus_mykiss,Eukaryota,Metazoa,Chordata,Fish,Salmoniformes,Salmonidae,Oncorhynchus,mykiss,ecto,12235,4.087603974,11,1.041392685,20,1.301029996,1
+Southern sand flathead,Platycephalus_bassensis,Eukaryota,Metazoa,Chordata,Fish,Scorpaeniformes,Platycephalidae,Platycephalus,bassensis,ecto,3100,3.491361694,23,1.361727836,12.19,1.086003706,NA
+Starry smooth-hound,Mustelus_asterias,Eukaryota,Metazoa,Chordata,Fish,Carcharhiniformes,Triakidae,Mustelus,asterias,ecto,3000,3.477121255,18.3,1.26245109,3,0.477121255,NA
+Australian ghost shark,Callorhinchus_milii,Eukaryota,Metazoa,Chordata,Fish,Chimaeriformes,Callorhinchidae,Callorhinchus,milii,ecto,4000,3.602059991,6,0.77815125,24.59,1.390758529,NA
+Sparsely spotted stingaree,Urolophus_paucimaculatus,Eukaryota,Metazoa,Chordata,Fish,Myliobatiformes,Urolophidae,Urolophus,paucimaculatus,ecto,1438,3.157758886,12,1.079181246,24.39,1.3872118,NA
+Spiny dogfish,Squalus_acanthias,Eukaryota,Metazoa,Chordata,Fish,Squaliformes,Squalidae,Squalus,acanthias,ecto,5005,3.699404082,75,1.875061263,12.5,1.096910013,1
+Marbled electric ray,Torpedo_marmorata,Eukaryota,Metazoa,Chordata,Fish,Torpediniformes,Torpedinidae,Torpedo,marmorata,ecto,1650,3.217483944,20,1.301029996,3,0.477121255,NA
+Australian lungfish,Neoceratodus_forsteri,Eukaryota,Metazoa,Chordata,Fish,Ceratodontiformes,Neoceratodontidae,Neoceratodus,forsteri,ecto,40000,4.602059991,85,1.929418926,24.22,1.384174139,NA
+Greater hedgehog tenrec,Setifer_setosus,Eukaryota,Metazoa,Chordata,Mammalia,Afrosoricida,Tenrecidae,Setifer,setosus,endo,225,2.352182518,14.1,1.149219113,50,1.698970004,1
+Bowhead whale,Balaena_mysticetus,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Balaenidae,Balaena,mysticetus,endo,1.00E+08,8,211,2.324282455,9,0.954242509,0
+Grey whale,Eschrichtius_robustus,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Eschrichtiidae,Eschrichtius,robustus,endo,28500000,7.45484486,77,1.886490725,13,1.113943352,0
+Giraffe,Giraffa_camelopardalis,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Giraffidae,Giraffa,camelopardalis,endo,8.00E+05,5.903089987,39.5,1.596597096,10,1,0
+Sheep,Ovis_aries,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Bovidae,Ovis,aries,endo,80000,4.903089987,22.8,1.357934847,18,1.255272505,0
+Reindeer,Rangifer_tarandus,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Cervidae,Rangifer,tarandus,endo,101250,5.005395032,21.8,1.338456494,19.8,1.29666519,NA
+Goat,Capra_hircus,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Bovidae,Capra,hircus,endo,61000,4.785329835,20.8,1.318063335,10.4,1.017033339,NA
+Bottlenose dolphin,Tursiops_truncatus,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Delphinidae,Tursiops,truncatus,endo,2.00E+05,5.301029996,51.6,1.712649702,17,1.230448921,0
+Dromedary camel,Camelus_dromedarius,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Camelidae,Camelus,dromedarius,endo,434000,5.63748973,28.4,1.45331834,13,1.113943352,1
+Wild boar,Sus_scrofa,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Suidae,Sus,scrofa,endo,130000,5.113943352,27,1.431363764,15,1.176091259,1
+Reeve's muntjac,Muntiacus_reevesi,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Cervidae,Muntiacus,reevesi,endo,18000,4.255272505,23.2,1.365487985,14,1.146128036,0
+Southern red muntjac,Muntiacus_muntjak,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Cervidae,Muntiacus,muntjak,endo,21000,4.322219295,18.8,1.274157849,14,1.146128036,0
+Cattle,Bos_taurus,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Bovidae,Bos,taurus,endo,750000,5.875061263,20,1.301029996,18,1.255272505,0
+Pygmy hippopotamus,Choeropsis liberiensis,Eukaryota,Metazoa,Chordata,Mammalia,Atriodactyla,Hippopotamidae,Choeropsis,liberiensis,endo,215000,5.33243846,42.3,1.626340367,12,1.079181246,0
+Sea lion,Zalophus_californianus,Eukaryota,Metazoa,Chordata,Mammalia,Carnivora,Otariidae,Zalophus,californianus,endo,180000,5.255272505,35.7,1.552668216,5,0.698970004,0
+Spotted hyena,Crocuta_crocuta,Eukaryota,Metazoa,Chordata,Mammalia,Carnivora,Hyaenidae,Crocuta,crocuta,endo,63000,4.799340549,41.1,1.613841822,8,0.903089987,0
+Dog,Canis_lupus,Eukaryota,Metazoa,Chordata,Mammalia,Carnivora,Canidae,Canis,familiaris,endo,40000,4.602059991,27,1.431363764,15,1.176091259,0
+Polar bear,Ursus_maritimus,Eukaryota,Metazoa,Chordata,Mammalia,Carnivora,Ursidae,Ursus,maritimus,endo,475000,5.67669361,43.8,1.641474111,12,1.079181246,0
+Cat,Felis_catus,Eukaryota,Metazoa,Chordata,Mammalia,Carnivora,Felidae,Felis,catus,endo,3900,3.591064607,30,1.477121255,26.3,1.419955748,0
+Red panda,Ailurus_fulgens,Eukaryota,Metazoa,Chordata,Mammalia,Carnivora,Ailuridae,Ailurus,fulgens,endo,4325,3.635986112,19,1.278753601,25,1.397940009,0
+Tiger,Panthera_tigris,Eukaryota,Metazoa,Chordata,Mammalia,Carnivora,Felidae,Panthera,tigris,endo,119700,5.07809415,26.3,1.419955748,50,1.698970004,1
+European badger,Meles_meles,Eukaryota,Metazoa,Chordata,Mammalia,Carnivora,Mustelidae,Meles,meles,endo,13000,4.113943352,18.6,1.269512944,9.85,0.99343623,NA
+Little brown bat,Myotis_lucifugus,Eukaryota,Metazoa,Chordata,Mammalia,Chiroptera,Vespertilionidae,Myotis,lucifugus,endo,10,1,34,1.531478917,30,1.477121255,1
+Mexican free-tailed bat,Tadarida_brasiliensis,Eukaryota,Metazoa,Chordata,Mammalia,Chiroptera,Molossidae,Tadarida,brasiliensis,endo,12.5,1.096910013,12,1.079181246,26,1.414973348,1
+Flying fox,Pteropus_rodricensis,Eukaryota,Metazoa,Chordata,Mammalia,Chiroptera,Pteropodidae,Pteropus,rodricensis,endo,350,2.544068044,28,1.447158031,9,0.954242509,0
+Screaming hairy armadillo,Chaetophractus_vellerosus,Eukaryota,Metazoa,Chordata,Mammalia,Cingulata,Chlamyphoridae,Chaetophractus,vellerosus,endo,840,2.924279286,16.2,1.209515015,13,1.113943352,0
+Virginia opposum,Didelphis_virginiana,Eukaryota,Metazoa,Chordata,Mammalia,Didelphimorphia,Didelphidae,Didelphis,virginiana,endo,3000,3.477121255,6.6,0.819543936,35,1.544068044,1
+African pigmy hedgehog,Atelerix_albiventris,Eukaryota,Metazoa,Chordata,Mammalia,Eulipotyphla,Erinaceidae,Atelerix,albiventris,endo,500,2.698970004,11.4,1.056904851,38,1.579783597,1
+Iberian shrew,Sorex_granarius,Eukaryota,Metazoa,Chordata,Mammalia,Eulipotyphla,Soricidae,Sorex,granarius,endo,6.3,0.799340549,3,0.477121255,213,2.328379603,1
+Common shrew,Sorex_araneus,Eukaryota,Metazoa,Chordata,Mammalia,Eulipotyphla,Soricidae,Sorex,araneus,endo,9,0.954242509,3.2,0.505149978,12.59,1.10002573,1
+Rock hyrax,Procavia_capensis,Eukaryota,Metazoa,Chordata,Mammalia,Hyracoidea,Procaviidae,Procavia,capensis,endo,3600,3.556302501,14.8,1.170261715,15,1.176091259,0
+Black-tailed jack rabbit,Lepus_californicus,Eukaryota,Metazoa,Chordata,Mammalia,Lagomorpha,Leporidae,Lepus,californicus,endo,4175,3.62065648,11.8,1.071882007,50,1.698970004,0
+Swamp rabbit,Sylvilagus_aquaticus,Eukaryota,Metazoa,Chordata,Mammalia,Lagomorpha,Leporidae,Sylvilagus,aquaticus,endo,2700,3.431363764,8,0.903089987,50,1.698970004,0
+European white rabbit,Oryctolagus_cuniculus,Eukaryota,Metazoa,Chordata,Mammalia,Lagomorpha,Leporidae,Oryctolagus,cuniculus,endo,1800,3.255272505,13,1.113943352,80,1.903089987,0
+North American pika,Ochotona_princeps,Eukaryota,Metazoa,Chordata,Mammalia,Lagomorpha,Ochotonidae,Ochona,princeps,endo,100,2,7,0.84509804,20,1.301029996,1
+Round-eared elephant shrew,Macroscelides_proboscideus,Eukaryota,Metazoa,Chordata,Mammalia,Macroscelidae,Macroscelididae,Macroscelides,proboscideus,endo,40,1.602059991,8.7,0.939519253,37,1.568201724,1
+Long-eared elephant shrew,Galegeeska_rufescens,Eukaryota,Metazoa,Chordata,Mammalia,Macroscelidae,Macroscelididae,Elephantulus,rufescens,endo,58,1.763427994,7.9,0.897627091,37,1.568201724,1
+White rhinocerous,Ceratotherium_simum,Eukaryota,Metazoa,Chordata,Mammalia,Perissodactyla,Rhinocerotidae,Ceratotherium,simum,endo,2175000,6.337459261,45,1.653212514,10,1,0
+Zebra,Equus_grevyi,Eukaryota,Metazoa,Chordata,Mammalia,Perissodactyla,Equidae,Equus,grevyi,endo,384000,5.584331224,31,1.491361694,12,1.079181246,0
+Horse,Equus_caballus,Eukaryota,Metazoa,Chordata,Mammalia,Perissodactyla,Equidae,Equus,caballus,endo,3.00E+05,5.477121255,57,1.755874856,18.7,1.271841607,0
+Malayan tapir,Tapirus_indicus,Eukaryota,Metazoa,Chordata,Mammalia,Perissodactyla,Tapiridae,Tapirus,indicus,endo,250000,5.397940009,36.5,1.562292864,12,1.079181246,0
+Giant Anteater,Myrmecophaga_tridactyla,Eukaryota,Metazoa,Chordata,Mammalia,Pilosa,Myrmecophagidae,Myrmecophaga,tridactyla,endo,28500,4.45484486,31,1.491361694,12,1.079181246,0
+Two-toed sloth,Choloepus_hoffmanni,Eukaryota,Metazoa,Chordata,Mammalia,Pilosa,Choloepodidae,Choloepus,hoffmanni,endo,6250,3.795880017,41,1.612783857,17,1.230448921,0
+Human,Homo_sapiens,Eukaryota,Metazoa,Chordata,Mammalia,Primate,Hominidae,Homo,sapien,endo,62035,4.792636787,122.5,2.088136089,9,0.954242509,0
+Spider monkey,Ateles_geoffroyi,Eukaryota,Metazoa,Chordata,Mammalia,Primates,Atelidae,Ateles,geoffroyi,endo,7268,3.861414919,47.1,1.673020907,7,0.84509804,0
+Common squirrel Monkey,Saimiri_sciureus,Eukaryota,Metazoa,Chordata,Mammalia,Primates,Cebidae,Saimiri,sciureus,endo,925,2.966141733,30.2,1.480006943,9,0.954242509,0
+Bonobo,Pan_paniscus,Eukaryota,Metazoa,Chordata,Mammalia,Primates,Hominidae,Pan,paniscus,endo,39925,4.601244925,55,1.740362689,10,1,0
+Orangutan,Pongo_pygmaeus,Eukaryota,Metazoa,Chordata,Mammalia,Primates,Hominidae,Pongo,pygmaeus,endo,64475,4.809391351,59,1.770852012,10,1,0
+Chimpanzee,Pan_troglodytes,Eukaryota,Metazoa,Chordata,Mammalia,Primates,Hominidae,Pan,troglodyte,endo,44984,4.653058071,68,1.832508913,11.6,1.064457989,NA
+Gorilla,Gorilla_gorilla,Eukaryota,Metazoa,Chordata,Mammalia,Primates,Hominidae,Gorllia,gorilla,endo,139842,5.145637627,60.1,1.778874472,15.4,1.187520721,NA
+Ring-tailed lemur,Lemur_catta,Eukaryota,Metazoa,Chordata,Mammalia,Primates,Lemuridae,Lemur,catta,endo,2555,3.407390904,37.3,1.571708832,19,1.278753601,0
+Pigtailed macaque,Macaca_nemestrina,Eukaryota,Metazoa,Chordata,Mammalia,Primates,Cercopithecidae,Macaca,nemestrina,endo,7913,3.898341166,37.6,1.575187845,14.9,1.173186268,NA
+Rhesus macaque,Macaca_mulatta,Eukaryota,Metazoa,Chordata,Mammalia,Primates,Cercopithecidae,Macaca,mulatta,endo,8235,3.915663604,40,1.602059991,16,1.204119983,0
+Cynomoglus monkey,Macaca_fascicularis,Eukaryota,Metazoa,Chordata,Mammalia,Primates,Cercopithecidae,Macaca,fascicularis,endo,6363,3.803661923,39,1.591064607,15.1,1.178976947,0
+African elephant,Loxodonta_africana,Eukaryota,Metazoa,Chordata,Mammalia,Proboscidae,Elephantidae,Loxodonta,africana,endo,4800000,6.681241237,65,1.812913357,14,1.146128036,0
+Indian elephant,Elephas_maximus,Eukaryota,Metazoa,Chordata,Mammalia,Proboscidae,Elephantidae,Elephas,indicus,endo,3178000,6.502153893,79.6,1.900913068,15,1.176091259,0
+North American beaver,Castor_canadensis,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Castoridae,Castor,canadensis,endo,20250,4.306425028,23.4,1.369215857,7,0.84509804,0
+Capybara,Hydrochoerus_hydrochaeris,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Caviidae,Hydrochoerus,hydrochaeris,endo,55000,4.740362689,15.1,1.178976947,10,1,0
+Eastern grey squirrel,Sciurus_carolinensis,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Sciuridae,Sciurus,carolinensis,endo,533,2.726727209,23.6,1.372912003,50,1.698970004,1
+Mountain beaver,Aplodontia_rufa,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Aplodontiidae,Aplodontia,rufa,endo,1125,3.051152522,6,0.77815125,9,0.954242509,0
+Sonoran deer mouse,Peromyscus_maniculatus,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Cricetidae,Peromyscus,maniculatus,endo,20.5,1.311753861,8.3,0.919078092,9,0.954242509,1
+Naked mole-rat,Heterocephalus_glaber,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Heterocephalidae,Heterocephalus,glaber,endo,35,1.544068044,31,1.491361694,34,1.204119983,1
+Norway rat,Rattus_norvegicus,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Muridae,Rattus,norvegicus,endo,300,2.477121255,3.8,0.579783597,40,1.602059991,1
+House mouse,Mus_musculus,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Muridae,Mus,musculus,endo,20.5,1.311753861,4,0.602059991,40,1.602059991,1
+Large tree shrew,Tupaia_tana,Eukaryota,Metazoa,Chordata,Mammalia,Scandentia,Tupaiidae,Tupaia,tana,endo,197.8,2.296226287,11.6,1.064457989,15,1.176091259,1
+Tree shrew,Tupaia_belangeri,Eukaryota,Metazoa,Chordata,Mammalia,Scandentia,Tupaiidae,Tupaia,belangeri,endo,200,2.301029996,11.1,1.045322979,23,1.361727836,NA
+Chinese alligator,Alligator_sinensis,Eukaryota,Metazoa,Chordata,Reptilia,Crocodilia,Alligatoridae,Alligator,sinensis,ecto,14600,4.164352856,65,1.812913357,16.16,1.208441356,0
+American Alligator,Alligator_mississippiensis,Eukaryota,Metazoa,Chordata,Reptilia,Crocodilia,Alligatoridae,Alligator,mississippiensis,ecto,150000,5.176091259,77,1.886490725,30.9,1.489958479,NA
+Common lizard,Zootoca_vivipara,Eukaryota,Metazoa,Chordata,Reptilia,Squamata,Lacertidae,Zootoca,vivipara,ecto,5,0.698970004,11,1.041392685,19.31,1.285782274,NA
+Sand lizard,Lacerta_agilis,Eukaryota,Metazoa,Chordata,Reptilia,Squamata,Lacertidae,Lacerta,agilis,ecto,20,1.301029996,10,1,18.6,1.269512944,NA
+Water python,Liasis_fuscus,Eukaryota,Metazoa,Chordata,Reptilia,Squamata,Pythonidae,Liasis,fuscus,ecto,10592,4.024977972,26.8,1.428134794,27.05,1.432167269,NA
+European freshwater turtles,Emys_orbicularis,Eukaryota,Metazoa,Chordata,Reptilia,Testudines,Testudinoidea,Emys,orbicularis,ecto,325,2.511883361,120,2.079181246,20,1.301029996,NA
+Yellow-bellied slider,Trachemys_scripta,Eukaryota,Metazoa,Chordata,Reptilia,Testudines,Emydidae,Pseudemys,scripta,ecto,1428,3.154728207,30,1.477121255,50,1.698970004,NA
+Painted turtle,Chrysemys_picta,Eukaryota,Metazoa,Chordata,Reptilia,Testudines,Emydidae,Chrysemys,picta,ecto,371.8,2.570309385,61,1.785329835,60,1.77815125,1
+Chincilla,Chinchilla_lanigera,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Chinchillidae,Chichilla,lanigera,ecto,642.5,2.807873132,17.2,1.235528447,38,1.579783597,1
+Nutria,Myocastor_coypus,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Myocastoridae,Myocastor,coypus,ecto,7850,3.894869657,19,1.278753601,54,1.73239376,1
+Mongolian Gerbil,Meriones_unguiculatus,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Muridae,Meriones,unguiculatus,ecto,53.2,1.725911632,6.3,0.799340549,29,1.462397998,1
+Golden hamster,Mesocricetus_auratus,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Cricetidae,Mesocricetus,auratus,ecto,105,2.021189299,3.9,0.591064607,50,1.698970004,1
+Muskrat,Ondatra_zibethicus,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Cricetidae,Ondatra,zibethicus,ecto,1362,3.134177108,10,1,45,1.653212514,1
+Woodchuck,Marmota_monax,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Sciuridae,marmota,monax,ecto,4000,3.602059991,14,1.146128036,60,1.77815125,1
+Eastern American chipmunk,Tamias_striatus,Eukaryota,Metazoa,Chordata,Mammalia,Rodentia,Sciuridae,Tamias,striatus,ecto,96,1.982271233,9.5,0.977723605,63,1.799340549,1
