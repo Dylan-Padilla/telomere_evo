@@ -12,10 +12,11 @@ output:
 <font size="4"> Why are telomeres the length that they are? Insight from a phylogenetic comparative analysis </font>
 </p>
 
-</p></p>
+Workflow of the analyses produced by [Dylan Padilla](https://dylanpadilla.netlify.app/), School of Life Sciences, Arizona State University, Tempe, AZ 85287, USA.
 
-Workflow of the analyses produced by [Dylan J. Padilla Perez](https://dylanpadilla.netlify.app/), School of Life Sciences, Arizona State University, Tempe, AZ 85287, USA.
-</p></p>
+![](imgs/asu_logo.png)
+
+<br>
 
 <b>
 <font size="3"> Library </font>
@@ -24,7 +25,12 @@ Workflow of the analyses produced by [Dylan J. Padilla Perez](https://dylanpadil
 
 ```{r, include = FALSE}
 
-knitr::opts_chunk$set(comment = ">", fig.width = 7, fig.height = 7, dpi = 300)
+knitr::opts_chunk$set(comment = ">",
+                      fig.width = 7,
+                      fig.height = 7,
+                      dpi = 300,
+                      message = FALSE,
+                      warning = FALSE)
 
 ```
 
@@ -38,6 +44,7 @@ library(car)
 library(coda)
 library(extrafont)
 library(geiger)
+library(graph)
 library(kableExtra)
 library(MuMIn)
 library(nlme)
@@ -47,6 +54,7 @@ library(phytools)
 library(plotrix)
 library(rphylopic)
 library(scales)
+library(sensiPhy)
 library(shape)
 library(xtable)
 
@@ -66,7 +74,7 @@ set.seed(80)
 
 ## Dataset
 
-data <- read.csv("new_data_2024.csv")
+data <- read.csv('../TRF-anaysis-no-domesticated.csv')
 str(data)
 head(data)
 
@@ -74,31 +82,22 @@ unique(data$Class)
 
 dat <- data
 names(dat)
-dat$log_mass <- log1p(dat$Adult_mass_grams)
-dat$log_mass
-
-dat[dat$Average_Telomere_Length_kb > 200, ]
-#str(dat)
-
-dat <- dat[!dat$Scientific_name == "Sorex_granarius", ] ## potential outlier
-
-
-rownames(dat) <- dat$Scientific_name
-head(dat)
+unique(is.na(dat$log_mass))
 
 ## Trees
 
-full_data_tree <- read.tree("spp.tree.nwk")
+##write.table(data$Scientific_name, 'spp.tree.08-03-24.txt', row.names = FALSE, col.names = FALSE)
+
+full_data_tree <- read.tree("spp.tree.08-03-24.nwk")
 is.ultrametric(full_data_tree)
 full_data_tree <- force.ultrametric(full_data_tree)
 is.ultrametric(full_data_tree)
 full_data_tree
 
+rownames(dat) <- dat$Scientific_name
 
 
 ## Full_tree
-
-full_data_tree$tip.label
 
 check <- name.check(full_data_tree, dat)
 rm_phy <- check$tree_not_data
@@ -111,166 +110,123 @@ pruned_data_tree
 
 name.check(pruned_data_tree, pruned_dat)
 
+## Checking the distribution of lifespan
 
-hist(pruned_dat$Lifespan_years, main = "raw variable")
-hist(log1p(pruned_dat$Lifespan_years), main = "log-transformed")
-names(pruned_dat)
+plot(NA, xlim = c(0, 200), ylim = c(0, 60), type = 'n', las = 1, xlab = '', ylab = '', axes = FALSE)
+grid()
+
+par(new = TRUE)
+hist(pruned_dat$Lifespan_years, main = "Raw variable", las = 1, xlab = 'Lifespan (years)')
+box()
+
+plot(NA, xlim = c(0, 200), ylim = c(0, 60), type = 'n', las = 1, xlab = '', ylab = '', axes = FALSE)
+grid()
+
+par(new = TRUE)
+hist(log1p(pruned_dat$Lifespan_years), main = "Log-transformed", xlab = 'Log lifespan (years)', las = 1)
+box()
+
+## Log-transforming for a better fit
 
 pruned_dat$log.lifespan <- log1p(pruned_dat$Lifespan_years)
-pruned_dat$log.lifespan
-
+pruned_dat$log.mass <- log1p(pruned_dat$Adult_mass_grams)
 
 
 ```
 
 <br><br>
+
 <b>
-<font size="3"> Figure 1 </font>
+<font size='3'>Implementing phylogenetic path analysis as suggested by the editor</font>
 </b>
 
+<br>
 
 ```{r}
 
+## Defining models
 
-#fonts()
+path.mod <- pruned_dat
+names(path.mod)
+path.mod$Average_Telomere_Length_kb <- log(path.mod$Average_Telomere_Length_kb)
 
-#png("figure1.png", width = 7, height = 7, units = "in", res = 360)
-#pdf("figure1.pdf")
+names(path.mod)[c(16, 11, 29, 28)] <- c('TL', 'TB', 'BM', 'LS')
 
-par(family = "Monaco")
-plot(NA, type = "n", xaxt = "n", ylab = "", xlab = "", xlim = c(0, 5), ylim = c(0, 5), axes = FALSE)
-box()
-text(x = 2.5, y = 5, "Body size", cex = 1.4)
-text(x = 0.5, y = 0.5, "Lifespan", cex = 1.4)
-text(x = 4.5, y = 0.5, "Endothermy", cex = 1.4)
-text(x = 2.5, y = 2.5, "Telomere\nlength", cex = 1.4)
-
-Arrows(2.1, 4.8, 0.7, 0.7, lwd = 2, code = 3, arr.adj = 2, arr.type="triangle", srt= 50, col = "gray")
-Arrows(3, 4.8, 4.5, 0.7, lwd = 2, code = 3, arr.adj = 2, arr.type="triangle", srt= 50, col = "gray")
-Arrows(1.2, 0.5, 3.5, 0.5, lwd = 2, code = 3, arr.adj = 2, arr.type="triangle", srt= 50, col = "gray")
-
-Arrows(1, 0.7, 2.3, 2, lwd = 2, code = 2, arr.adj = 2, arr.type="triangle", srt= 50)
-Arrows(3.9, 0.7, 2.7, 2, lwd = 2, code = 2, arr.adj = 2, arr.type="triangle", srt= 50)
-Arrows(2.5, 4.8, 2.5, 2.8, lwd = 2, code = 2, arr.adj = 2, arr.type="triangle", srt= 50)
-
-##dev.off()
+models <- define_model_set(
+    "null" = c(TL ~ TL, TB ~ LS, TB ~ BM, LS ~ BM),
+    "(a)" = c(TL ~ LS, TB ~ LS, TB ~ BM, BM ~ LS),
+    "(b)" = c(TL ~ BM, TB ~ LS, TB ~ BM, BM ~ LS),
+    "(c)" = c(TL ~ TB, TB ~ LS, TB ~ BM, BM ~ LS),
+    "(d)" = c(TL ~ BM + LS + TB),
+    "(e)" = c(TL ~ LS),
+    "(f)" = c(TL ~ BM),
+    "(g)" = c(TL ~ TB))
 
 
+#png("figureS1-revised.png", width = 7, height = 7, units = "in", res = 360)
+#pdf("figureS1-revised.pdf")
 
-```
-
-<br><br>
-<b>
-<font size="3"> Figure 2 </font>
-</b>
-
-
-
-```{r, eval = FALSE}
-
-
-#png("figure2.png", width = 7, height = 7, units = "in", res = 360)
-#pdf("figure2.pdf")
-
-plotTree(pruned_data_tree, fsize = 0.25, ftype = "i", mar = c(1, 1, 1, 3))
-
-cladebox <- function(tree, node, spp, ysize, color,...){
-    obj <- get("last_plot.phylo", envir = .PlotPhyloEnv)
-    h <- max(nodeHeights(tree))
-    parent <- tree$edge[which(tree$edge[ , 2] == node), 1]
-    x0 <- max(c(obj$xx[node] + obj$xx[parent])/2, obj$xx[node]-0.01*h)
-    x1 <- obj$x.lim[2]
-    dd <- getDescendants(tree, node)
-    y0 <- min(range(obj$yy[dd]))-0.6
-    y1 <- max(range(obj$yy[dd]))+0.6
-    cols <- colorRampPalette(c("white", color))(100)
-    x0 <- seq(x0, x1, length.out = 101)[1:100]
-    x1 <- seq(x0[1], x1, length.out = 101)[2:101]
-    for(j in 1:100){
-        polygon(c(x0[j], x1[j], x1[j], x0[j]), c(y0, y0, y1, y1), col = make.transparent(cols[j], 0.6),
-                border = 0)
-    }
-    
-    spp <- gsub("_", " ", as.character(spp))
-    x2<- runif(100, obj$x.lim[2] + 10, obj$x.lim[2]+50)
-    y3 <- seq(y0, y1, 5)
-   
-    for(i in spp){
-        x2
-        uuid <- get_uuid(name = i, n = 1)
-        img <- get_phylopic(uuid = uuid)
-        i <- gsub(" ", "_", i) ## This is actually not required as I think rphylopic can get spp names with "_"
-        nodes <- sapply(i, grep, x = tree$tip.label)
-        for(j in nodes){
-            add_phylopic_base(img = img, x = sample(x2, 1), y = j, ysize = ysize, color = color, fill = color)
-        }
-       
-    }
-
-}
-
-#nodelabels(cex = 0.5)
-
-chel.spp <- pruned_dat$Scientific_name[pruned_dat$Class == "Reptilia"][8]
-bird.spp <- pruned_dat$Scientific_name[pruned_dat$Class == "Aves"][c(4, 10, 11, 12, 27, 28, 5)]
-alg.spp <- pruned_dat$Scientific_name[pruned_dat$Class == "Reptilia"][2]
-squ.spp <- pruned_dat$Scientific_name[pruned_dat$Class == "Reptilia"][4]
-mammal.spp <- pruned_dat$Scientific_name[pruned_dat$Class == "Mammalia"][c(4, 5, 2, 16, 30, 37, 47, 53, 55, 49)]
-ost.spp <- pruned_dat$Scientific_name[pruned_dat$Class == "Fish"][c(7, 4, 8)]
-chon.spp <- pruned_dat$Scientific_name[pruned_dat$Class == "Fish"][c(19, 24)]
-
-cladebox(pruned_data_tree, 282, spp = chel.spp, 3, color = "#e93e3a")
-cladebox(pruned_data_tree, 238, spp = bird.spp, 3, color = "#759c8a")
-cladebox(pruned_data_tree, 237, spp = alg.spp, 2, color = "brown")
-cladebox(pruned_data_tree, 233, spp = squ.spp, 1, color = "#e7dddf")
-cladebox(pruned_data_tree, 170, spp = mammal.spp, 3, color = "#dd9f40")
-cladebox(pruned_data_tree, 149, spp = ost.spp, 2, color = "#a39db8")
-cladebox(pruned_data_tree, 144, spp = chon.spp, 2,  color = "#efe0a8")
-
-
-
-
+plot_model_set(models, nrow = 4) + ggplot2::scale_y_continuous(expand = c(0.1, 0)) + theme(plot.margin=unit(c(0.5, 3, 0.5, 3), "cm"))
 
 #dev.off()
 
+mo <- phylo_path(models, path.mod, pruned_data_tree)
+s <- summary(mo)
+theme_set(theme_bw())
 
-```
+#png("figureS2-revised.png", width = 7, height = 7, units = "in", res = 360)
+#pdf("figureS2-revised.pdf")
+
+bar.pl <- tapply(s$w, list(s$model), print)
+p.val <- s[names(bar.pl), ]
+
+barplot(NA, beside = TRUE, space = FALSE, horiz = TRUE, xlim = c(0, 1), axes = FALSE)
+
+grid()
+
+par(new = TRUE)
+
+barplot(bar.pl, beside = TRUE, space = FALSE, horiz = TRUE, xlim = c(0, 1), yaxt = 'n', ylab = 'Candidate models', xlab = 'Weight of evidence (w)', col = c(rep('gray', 2), alpha('red', 0.3), rep('gray', 5)))
+
+axis(2, at = (0:7)+0.5, labels = names(bar.pl), las = 1)
+box()
+
+text(x = round(bar.pl, 3)+0.05, y = (0:7)+0.5, labels = round(p.val$p, 3))
+legend('topright', legend = 'within 2 CICc', fil = alpha('red', 0.3), bty = 'n')
+
+#dev.off()
+
+pagel.model0 <- gls(log(Average_Telomere_Length_kb) ~ Endo_ectotherm + log.lifespan + log.mass, correlation = corPagel(0, phy = pruned_data_tree, form = ~Scientific_name), data = pruned_dat, method = "ML")
+summary(pagel.model0)
+
+brown.model <- gls(log(Average_Telomere_Length_kb) ~ Endo_ectotherm + log.lifespan + log.mass, correlation = corBrownian(phy = pruned_data_tree, form = ~Scientific_name), data = pruned_dat, method = "ML")
+summary(brown.model)
+
+VerTree <- pruned_data_tree
+VerTree$edge.length <- pruned_data_tree$edge.length * 100
+
+OU.model1 <- gls(log(Average_Telomere_Length_kb) ~ Endo_ectotherm + log.lifespan + log.mass, correlation = corMartins(1, phy = VerTree, form = ~Scientific_name), data = pruned_dat, method = "ML")
+summary(OU.model1)
 
 
-![](imgs/figure2-1.png)
+## Model selection procedure based on AIC criterion
 
+output.models <- model.sel(brown.model, pagel.model0, OU.model1)
 
+sel.table <- round(as.data.frame(output.models)[6:10], 3)
+names(sel.table)[1] <- "K"
+sel.table$Model <- rownames(sel.table)
+sel.table <- sel.table[ , c(6, 1, 2, 3, 4, 5)]
+sel.table
 
-```{r}
+anova(pagel.model0)
+pagel.mod.red <- gls(log(Average_Telomere_Length_kb) ~ Endo_ectotherm + log.lifespan, correlation = corPagel(0, phy = pruned_data_tree, form = ~Scientific_name), data = pruned_dat, method = "ML")
+summary(pagel.mod.red)
 
-## PGLS models
+anova(pagel.model0, pagel.mod.red) # no difference between the models
 
-names(pruned_dat)
-pruned_dat$new.log.TL <- log(pruned_dat$Average_Telomere_Length_kb)
-pruned_dat$new.log.TL
-
-model1 <- gls(new.log.TL ~ log_mass + log.lifespan + Endo_ectotherm + log_mass:log.lifespan + log_mass:Endo_ectotherm + log.lifespan:Endo_ectotherm + log_mass:log.lifespan:Endo_ectotherm, correlation = corBrownian(phy = pruned_data_tree, form = ~Scientific_name), data = pruned_dat, method = "ML")
-summary(model1)
-
-model2 <- update(model1, ~ .-log_mass:log.lifespan:Endo_ectotherm)
-summary(model2)
-
-model3 <- update(model2, ~ .-log.lifespan:Endo_ectotherm)
-summary(model3)
-
-model4 <- update(model3, ~ .-log_mass:log.lifespan)
-summary(model4)
-
-model5 <- update(model4, ~ .-log_mass:Endo_ectotherm)
-summary(model5)
-
-model6 <- update(model5, ~ .-Endo_ectotherm)
-summary(model6)
-
-model7 <- update(model6, ~ .-log_mass)
-summary(model7)
-
-
+mod.plot <- gls(log(Average_Telomere_Length_kb) ~ Endo_ectotherm*log.lifespan, correlation = corPagel(0, phy = pruned_data_tree, form = ~Scientific_name), data = pruned_dat, method = "ML") ## for plotting purposes. Notice the slopes are not significant, but the main effects are!
+summary(mod.plot)
 
 ## Model diagnosis
 
@@ -285,14 +241,23 @@ layout(matrix(c(0, 0, 0, 0,
 ## Checking homogeneity of variance
 
 
-plot(fitted(model7), resid(model7), col = "grey", pch = 20, xlab = "Fitted", ylab = "Residual", main = "Fitted versus Residuals")
+plot(fitted(pagel.mod.red), resid(pagel.mod.red), col = "grey", pch = 20, xlab = "Fitted", ylab = "Residual", main = "Fitted versus Residuals", type = 'n', las = 1)
+grid()
+
+par(new = TRUE)
+plot(fitted(pagel.mod.red), resid(pagel.mod.red), col = "grey", pch = 20, xlab = "Fitted", ylab = "Residual", main = "Fitted versus Residuals", las = 1)
+
 abline(h = 0, col = "darkorange", lwd = 2)
 
 
 ## Checking normality
 
-qqnorm(resid(model7), col = "darkgrey")
-qqline(resid(model7), col = "dodgerblue", lwd = 2)
+qqnorm(resid(pagel.mod.red), col = "darkgrey", type = 'n', las = 1)
+grid()
+
+par(new = TRUE)
+qqnorm(resid(pagel.mod.red), col = "darkgrey", las = 1)
+qqline(resid(pagel.mod.red), col = "dodgerblue", lwd = 2)
 
 
 
@@ -300,7 +265,7 @@ qqline(resid(model7), col = "dodgerblue", lwd = 2)
 
 <br><br>
 <b>
-<font size="3"> Figure 5 </font>
+<font size="3"> Figure 3 </font>
 </b>
 
 
@@ -308,74 +273,69 @@ qqline(resid(model7), col = "dodgerblue", lwd = 2)
 ```{r}
 
 
-#png("figure3.png", width = 7, height = 7, units = "in", res = 360)
-#pdf("figure3.pdf")
+#png("figure3-revised.png", width = 7, height = 7, units = "in", res = 360)
+#pdf("figure3-revised.pdf")
 
-
-par(mar = c(5, 4, 1, 4))
-
-plot(new.log.TL ~ log.lifespan , data = pruned_dat, pch = 21, bg = c(alpha("purple", 0.5), alpha("orange", 0.5), alpha("pink", 0.7), alpha("gold", 0.5))[as.numeric(as.factor(pruned_dat$Class))], col = c(alpha("purple", 0.5), alpha("orange", 0.5), alpha("pink", 0.7), alpha("gold", 0.5))[as.numeric(as.factor(pruned_dat$Class))], las = 1, xlab = "Log lifespan (yrs)", ylab = "Log telomere length (kb)", type = "n")
+plot(log(Average_Telomere_Length_kb[Endo_ectotherm == 'ecto']) ~ log.lifespan[Endo_ectotherm == 'ecto'], data = pruned_dat, pch = 21, bg = alpha("purple", 0.5), las = 1, xlab = "Lifespan (log yrs)", ylab = "Telomere length (log kb)", type = 'n')
 
 grid(nx = NULL, ny = NULL, col = "lightgray", lwd = 1)
-
 par(new = TRUE)
 
-plot(new.log.TL ~ log.lifespan , data = pruned_dat, pch = 21, bg = c(alpha("purple", 0.5), alpha("orange", 0.5), alpha("pink", 0.7), alpha("gold", 0.5))[as.numeric(as.factor(pruned_dat$Class))], col = c(alpha("purple", 0.5), alpha("orange", 0.5), alpha("pink", 0.7), alpha("gold", 0.5))[as.numeric(as.factor(pruned_dat$Class))], las = 1, xlab = "Log lifespan (yrs)", ylab = "Log telomere length (kb)")
+plot(log(Average_Telomere_Length_kb[Endo_ectotherm == 'ecto']) ~ log.lifespan[Endo_ectotherm == 'ecto'], data = pruned_dat, pch = 21, bg = alpha("purple", 0.5), las = 1, xlab = "Lifespan (log yrs)", ylab = "Telomere length (log kb)")
+points(log(Average_Telomere_Length_kb[Endo_ectotherm == 'endo']) ~ log.lifespan[Endo_ectotherm == 'endo'], data = pruned_dat, pch = 21, bg = alpha("orange", 0.5), las = 1, xlab = "Lifespan (log yrs)", ylab = "Telomere length (log kb)")
 
-par(xpd = TRUE)
-
-uuid.aves <- get_uuid(name = "Accipiter_gentilis", n = 1)
-img.aves <- get_phylopic(uuid = uuid.aves)
-add_phylopic_base(img = img.aves, x = 6, y = 2.4, ysize = 0.1, col = alpha("purple", 0.5), fill = alpha("purple", 0.5))
-
-uuid.fish <- get_uuid(name = "Oreochromis niloticus", n = 1)
-img.fish <- get_phylopic(uuid = uuid.fish)
-add_phylopic_base(img = img.fish, x = 6, y = 2.2, ysize = 0.09, col = alpha("orange", 0.5), fill = alpha("orange", 0.5))
-
-uuid.mammals <- get_uuid(name = "Elephas_maximus", n = 1)
-img.mammals <- get_phylopic(uuid = uuid.mammals)
-add_phylopic_base(img = img.mammals, x = 6, y = 2, ysize = 0.2, col = alpha("pink", 0.7), fill = alpha("pink", 0.7), horizontal = TRUE)
-
-uuid.reptilia <- get_uuid(name = "Alligator_mississippiensis", n = 1)
-img.reptilia <- get_phylopic(uuid = uuid.reptilia)
-add_phylopic_base(img = img.reptilia, x = 6, y = 1.8, ysize = 0.1, col = alpha("gold", 0.5), fill = alpha("gold", 0.5))
-
-
-SSX <- sum(round((pruned_dat$new.log.TL - mean(pruned_dat$new.log.TL))^2), 2)
-s2 <- var(pruned_dat$new.log.TL)
-n <- length(pruned_dat$new.log.TL)
-x <- seq(min(pruned_dat$log.lifespan), max(pruned_dat$log.lifespan), 0.06)
-m.x <- mean(round(pruned_dat$new.log.TL, 1))
+SSX <- sum(round((log(pruned_dat$Average_Telomere_Length_kb[pruned_dat$Endo_ectotherm == 'ecto']) - mean(log(pruned_dat$Average_Telomere_Length_kb[pruned_dat$Endo_ectotherm == 'ecto'])))^2), 2)
+s2 <- var(log(pruned_dat$Average_Telomere_Length_kb[pruned_dat$Endo_ectotherm == 'ecto']))
+n <- length(log(pruned_dat$Average_Telomere_Length_kb[pruned_dat$Endo_ectotherm == 'ecto']))
+x <- seq(min(pruned_dat$log.lifespan[pruned_dat$Endo_ectotherm == 'ecto']), max(pruned_dat$log.lifespan[pruned_dat$Endo_ectotherm == 'ecto']), 0.06)
+m.x <- mean(round(log(pruned_dat$Average_Telomere_Length_kb[pruned_dat$Endo_ectotherm == 'ecto']), 1))
 se <- sqrt(s2*((1/n) + (((x - m.x)^2)/SSX)))
 is <- qt(0.975, df = n - 2)
 ii <- qt(0.025, df = n - 2)
 ic.s <- se*is
 ic.i <- se*ii
-upper.i <- (coef(model7)[1] + coef(model7)[2]*x) + ic.s
-lower.i <- (coef(model7)[1] + coef(model7)[2]*x) + ic.i
+upper.i <- (coef(mod.plot)[1] + coef(mod.plot)[2]*x) + ic.s
+lower.i <- (coef(mod.plot)[1] + coef(mod.plot)[2]*x) + ic.i
 
 ##par(new = TRUE)
 
-lines(x = x, y = (coef(model7)[1] + (coef(model7)[2]*x)), lwd = 2, col = alpha("black", 0.5))
+polygon(c(rev(x), x), c(rev(lower.i), upper.i), border = FALSE, col = alpha("purple", 0.3))
+lines(x = x, y = (coef(mod.plot)[1] + (coef(mod.plot)[2]*x)), lwd = 2, col = alpha("purple", 0.5))
 
-polygon(c(rev(x), x), c(rev(lower.i), upper.i), border = FALSE, col = alpha("gold", 0.3))
+SSX <- sum(round((log(pruned_dat$Average_Telomere_Length_kb[pruned_dat$Endo_ectotherm == 'endo']) - mean(log(pruned_dat$Average_Telomere_Length_kb[pruned_dat$Endo_ectotherm == 'endo'])))^2), 2)
+s2 <- var(log(pruned_dat$Average_Telomere_Length_kb[pruned_dat$Endo_ectotherm == 'endo']))
+n <- length(log(pruned_dat$Average_Telomere_Length_kb[pruned_dat$Endo_ectotherm == 'endo']))
+x <- seq(min(pruned_dat$log.lifespan[pruned_dat$Endo_ectotherm == 'endo']), max(pruned_dat$log.lifespan[pruned_dat$Endo_ectotherm == 'endo']), 0.06)
+m.x <- mean(round(log(pruned_dat$Average_Telomere_Length_kb[pruned_dat$Endo_ectotherm == 'endo']), 1))
+se <- sqrt(s2*((1/n) + (((x - m.x)^2)/SSX)))
+is <- qt(0.975, df = n - 2)
+ii <- qt(0.025, df = n - 2)
+ic.s <- se*is
+ic.i <- se*ii
+upper.i <- ((coef(mod.plot)[1] + coef(mod.plot)[3]) + (coef(mod.plot)[2] + coef(mod.plot)[4])*x) + ic.s
+lower.i <- ((coef(mod.plot)[1] + coef(mod.plot)[3]) + (coef(mod.plot)[2] + coef(mod.plot)[4])*x) + ic.i
 
+polygon(c(rev(x), x), c(rev(lower.i), upper.i), border = FALSE, col = alpha("orange", 0.3))
+lines(x = x, y = ((coef(mod.plot)[1] + coef(mod.plot)[3]) + (coef(mod.plot)[2] + coef(mod.plot)[4])*x), lwd = 2, col = alpha("orange", 0.5))
+##summary(mod.plot)
+
+legend('bottomleft', legend = c('Ectotherms', 'Endotherms'), pch = 16, col = c('purple', 'orange'), lwd = 1, bty = 'n', cex = 0.8)
+
+#dev.off()
 
 ```
 
 
 <b>
-<font size="3"> Figure 4 </font>
+<font size="3"> Figure 2 </font>
 </b>
-
-
 
 
 ```{r}
 
 ## Phylogenetic signal (Blomberg et al.'s K statitics
 
-telo.length <- setNames(pruned_dat$new.log.TL, rownames(pruned_dat))
+telo.length <- setNames(log(pruned_dat$Average_Telomere_Length_kb), rownames(pruned_dat))
 telo.length
 
 k_tl <- phylosig(pruned_data_tree, telo.length, test = TRUE, nsim = 10000)
@@ -385,93 +345,46 @@ k_tl$K
 k_tl$P
 
 
-#png("figure4.png", width = 7, height = 7, units = "in", res = 360)
-#pdf("figure4.pdf")
+#png("figure2.png", width = 7, height = 7, units = "in", res = 360)
+#pdf("figure2.pdf")
 
+
+plot(k_tl$sim.K, bty = "o", ylim = c(0, 3000), las = 1, ylab = "Null distribution of K", xlab = "K", main = "", type = 'n', axes = FALSE)
+grid()
+
+par(new = TRUE)
 hist(k_tl$sim.K, bty = "o", ylim = c(0, 3000), las = 1, ylab = "Null distribution of K", xlab = "K", main = "")
+
 abline(v = k_tl$K, lwd = 2, lty = "dotted")
 text(x = k_tl$K - 0.02, y = 2500, "Observed value \n of K")
 box()
 
+
 #dev.off()
 
+## Estimating lambda from PGLS models
 
+pagel.model <- gls(log(Average_Telomere_Length_kb) ~ Endo_ectotherm + log.lifespan + log.mass, correlation = corPagel(0.8, phy = pruned_data_tree, form = ~Scientific_name), data = pruned_dat, method = "ML")
+summary(pagel.model)
+intervals(pagel.model, which = 'var-cov')$corStruct
 
-## PGLS models within classes
+pagel.model0 <- gls(log(Average_Telomere_Length_kb) ~ Endo_ectotherm + log.lifespan + log.mass, correlation = corPagel(0, phy = pruned_data_tree, form = ~Scientific_name, fixed = TRUE), data = pruned_dat, method = "ML")
+summary(pagel.model0)
+intervals(pagel.model0, which = 'var-cov')
 
-## Mammals
+pagel.model0.5 <- gls(log(Average_Telomere_Length_kb) ~ Endo_ectotherm + log.lifespan + log.mass, correlation = corPagel(0.5, phy = pruned_data_tree, form = ~Scientific_name, fixed = TRUE), data = pruned_dat, method = "ML")
+summary(pagel.model0.5)
+intervals(pagel.model0.5, which = 'var-cov')
 
-pruned_tree_mammals <- drop.tip(pruned_data_tree, pruned_dat$Scientific_name[!pruned_dat$Class == "Mammalia"])
+pagel.model1 <- gls(log(Average_Telomere_Length_kb) ~ Endo_ectotherm + log.lifespan + log.mass, correlation = corPagel(1, phy = pruned_data_tree, form = ~Scientific_name, fixed = TRUE), data = pruned_dat, method = "ML")
+summary(pagel.model1)
+intervals(pagel.model1, which = 'var-cov')
 
-name.check(pruned_tree_mammals, data = pruned_dat[pruned_dat$Class == "Mammalia", ])
+anova(pagel.model, pagel.model0)
+anova(pagel.model, pagel.model0.5)
+anova(pagel.model0, pagel.model0.5)
+anova(pagel.model, pagel.model1)
 
-
-model8 <- gls(new.log.TL ~ log_mass + log.lifespan + log_mass:log.lifespan, correlation = corBrownian(phy = pruned_tree_mammals, form = ~Scientific_name), data = pruned_dat[pruned_dat$Class == "Mammalia", ], method = "ML")
-summary(model8)
-
-model9 <- update(model8, ~ .-log_mass:log.lifespan)
-summary(model9)
-
-model10 <- update(model9, ~ .-log.lifespan)
-summary(model10)
-
-```
-
-
-
-```{r}
-
-## Birds + Reptiles
-
-bird.reptiles <- rbind(pruned_dat[pruned_dat$Class == "Aves", ], pruned_dat[pruned_dat$Class == "Reptilia", ])
-
-pruned_dat_minus_bird.reptiles <- pruned_dat[!pruned_dat$Scientific_name %in% bird.reptiles$Scientific_name, ]
-
-pruned_tree_bird.reptiles <- drop.tip(pruned_data_tree, pruned_dat_minus_bird.reptiles$Scientific_name)
-name.check(pruned_tree_bird.reptiles, bird.reptiles)
-
-model11 <- gls(new.log.TL ~ log_mass + log.lifespan + Endo_ectotherm + log_mass:log.lifespan + log_mass:Endo_ectotherm + log.lifespan:Endo_ectotherm + log_mass:log.lifespan:Endo_ectotherm, correlation = corBrownian(phy = pruned_tree_bird.reptiles, form = ~Scientific_name), data = bird.reptiles, method = "ML")
-summary(model11)
-
-model12 <- update(model11, ~ .-log_mass:log.lifespan:Endo_ectotherm)
-summary(model12)
-
-model13 <- update(model12, ~ .-log.lifespan:Endo_ectotherm)
-summary(model13)
-
-model14 <- update(model13, ~ .-log_mass:log.lifespan)
-summary(model14)
-
-model15 <- update(model14, ~ .-log_mass:Endo_ectotherm)
-summary(model15)
-
-model16 <- update(model15, ~ .-Endo_ectotherm)
-summary(model16)
-
-model17 <- update(model16, ~ .-log_mass)
-summary(model17)
-
-
-```
-
-
-
-```{r}
-
-
-## Fish
-
-pruned_tree_fish <- drop.tip(pruned_data_tree, pruned_dat$Scientific_name[!pruned_dat$Class == "Fish"])
-name.check(pruned_tree_fish, data = pruned_dat[pruned_dat$Class == "Fish", ])
-
-model18 <- gls(new.log.TL ~ log_mass + log.lifespan + log_mass:log.lifespan, correlation = corBrownian(phy = pruned_tree_fish, form = ~Scientific_name), data = pruned_dat[pruned_dat$Class == "Fish", ], method = "ML")
-summary(model18)
-
-model19 <- update(model18, ~ .-log_mass:log.lifespan)
-summary(model19)
-
-model20 <- update(model19, ~ .-log.lifespan)
-summary(model20)
 
 ```
 
@@ -491,8 +404,8 @@ TA <- to.matrix(tel.act, unique(tel.act))
 TA <- TA[pruned_data_tree$tip.label, ]
 
 life.span <- setNames(pruned_dat$log.lifespan, rownames(pruned_dat))
-log_mass <- setNames(pruned_dat$log_mass, rownames(pruned_dat))
-telo.length <- setNames(pruned_dat$new.log.TL, rownames(pruned_dat))
+log_mass <- setNames(pruned_dat$log.mass, rownames(pruned_dat))
+telo.length <- setNames(log(pruned_dat$Average_Telomere_Length_kb), rownames(pruned_dat))
 
 
 ```
@@ -520,14 +433,7 @@ text(round(seq(min(life.span), max(life.span), 1.5), 1), par("usr")[3] - 0.2, la
 mtext("Lifespan \n (years)", side = 1, line = 1.6, cex = 0.5, font = 2)
 
 
-
 ```
-
-<br><br>
-<b>
-<font size="3"> Figure 3 </font>
-</b>
-
 
 
 ```{r}
@@ -535,24 +441,37 @@ mtext("Lifespan \n (years)", side = 1, line = 1.6, cex = 0.5, font = 2)
 ## Ancestral state reconstruction of telomere size
 
 fit <- fastAnc(pruned_data_tree, telo.length, vars = TRUE, CI = TRUE)
-
 fit$CI[1, ]
 obj <- contMap(pruned_data_tree, telo.length, plot = FALSE)
 
-
-##png("figure5.png", width = 7, height = 7, units = "in", res = 360)
-##pdf("figure5.pdf")
+```
 
 
-plot(obj, ftype = "off", legend = FALSE, ylim = c(1-0.09*(Ntip(obj$tree)-1), Ntip(obj$tree)), mar = c(1, 0.1, 1, 5), lwd = 1.5)
+```{r, include = FALSE}
+
+##png("figure1.png", width = 7, height = 7, units = "in", res = 360)
+##pdf("figure1.pdf")
+
+
+plot(obj, ftype = "off", legend = FALSE, ylim = c(1-0.09*(Ntip(obj$tree)-1), Ntip(obj$tree)), mar = c(1, 0.1, 1, 6), lwd = 1.5)
 add.color.bar(150, obj$cols,title = "Log telomere length (kb)", lims = obj$lims, digits = 3, prompt = FALSE, x = 0,
               y = 1-0.08*(Ntip(obj$tree)-1), lwd = 4, fsize = 0.6, subtitle = "")
 
-tiplabels(pie = TA, piecol = c("white", "gray", "black"), cex = 0.16, offset = 5.7)
+#par(xpd = TRUE)
+
+#cladelabels(pruned_data_tree, node = 217, "Diapsids", offset = 10)
+#cladelabels(pruned_data_tree, node = 153, "Mammals", offset = 10)
+#segments(560, 0, 560, 18)
+#segments(560, 0, 551, 0)
+#segments(560, 18, 551, 18)
+#text(570, 9, 'Fishes', srt = 90)
+
+
+tiplabels(pie = TA, piecol = c("gray", "white", "black"), cex = 0.16, offset = 5.7)
 legend(x = 200, y = -5, legend = unique(tel.act), pch = 21, pt.bg = c("white", "gray", "black"), pt.cex = 1, bty = "n", title = "Telomerase activity", cex = 0.7, horiz = TRUE)
 
 par(new = TRUE)
-par(mar = c(3.6, 29.7, 3, 3))
+par(mar = c(3.6, 28.8, 3, 4.2))
 
 barplot(life.span[pruned_data_tree$tip.label], horiz = TRUE, width = 1.07, space = 0,
         ylim = c(1, length(pruned_data_tree$tip.label))-0.5, names = "", las = 2, cex.axis = 0.5, axes = FALSE)
@@ -562,7 +481,7 @@ text(round(seq(min(life.span), max(life.span), 1.5), 1), par("usr")[3] - 0.2, la
 mtext("Log lifespan \n (years)", side = 1, line = 1.6, cex = 0.5, font = 2)
 
 par(new = TRUE)
-par(mar = c(3.6, 32.2, 3, 0.5))
+par(mar = c(3.6, 31, 3, 2))
 
 barplot(log_mass[pruned_data_tree$tip.label], horiz = TRUE, width = 1.07, space = 0,
         ylim = c(1, length(pruned_data_tree$tip.label))-0.5, names = "", las = 2, cex.axis = 0.5, axes = FALSE)
@@ -573,7 +492,59 @@ mtext("Log mass \n (gr)", side = 1, line = 1.6, cex = 0.5, font = 2)
 
 ##dev.off()
 
+```
 
+
+<br><br>
+<b>
+<font size="3"> Figure 1 </font>
+</b>
+
+
+```{r}
+
+##png("figure1.png", width = 7, height = 7, units = "in", res = 360)
+##pdf("figure1.pdf")
+
+
+plot(obj, ftype = "off", legend = FALSE, ylim = c(1-0.09*(Ntip(obj$tree)-1), Ntip(obj$tree)), mar = c(1, 0.1, 1, 4), lwd = 1.5)
+add.color.bar(150, obj$cols,title = "Log telomere length (kb)", lims = obj$lims, digits = 3, prompt = FALSE, x = 0,
+              y = 1-0.08*(Ntip(obj$tree)-1), lwd = 4, fsize = 0.6, subtitle = "")
+
+par(xpd = TRUE)
+
+text(300, 119, 'Testudines')
+text(300, 101, 'Aves', col = 'red')
+text(300, 82, 'Crocodilia')
+text(240, 74, 'Squamata')
+text(240, 40, 'Mammalia', col = 'red')
+text(160, 15, 'Osteichthyes')
+text(160, 4.5, 'Chondrichthyes')
+
+
+#cladelabels(pruned_data_tree, node = 217, "Ectotherms", offset = 6)
+#cladelabels(pruned_data_tree, node = 153, "Endotherms", offset = 6)
+#segments(518, 0, 518, 18)
+#segments(518, 0, 508, 0)
+#segments(518, 18, 508, 18)
+#text(528, 9, 'Ectotherms', srt = 90)
+
+
+tiplabels(pie = TA, piecol = c("gray", "black", "white"), cex = 0.16, offset = 5.7)
+legend(x = 200, y = -5, legend = unique(tel.act), pch = 21, pt.bg = c("gray", "black", "white"), pt.cex = 1, bty = "n", title = "Telomerase activity", cex = 0.7, horiz = TRUE)
+
+par(new = TRUE)
+par(mar = c(3.6, 30.8, 3, 2.2))
+
+barplot(life.span[pruned_data_tree$tip.label], horiz = TRUE, width = 1.07, space = 0,
+        ylim = c(1, length(pruned_data_tree$tip.label))-0.5, names = "", las = 2, cex.axis = 0.5, axes = FALSE)
+
+axis(1, at = round(seq(min(life.span), max(life.span), 1.5), 1), labels = FALSE)
+text(round(seq(min(life.span), max(life.span), 1.5), 1), par("usr")[3] - 0.2, labels = round(seq(min(life.span), max(life.span), 1.5), 1), srt = 50, pos = 1, xpd = TRUE, cex = 0.5, offset = 1)
+mtext("Log lifespan \n (years)", side = 1, line = 1.6, cex = 0.5, font = 2)
+
+
+##dev.off()
 
 ```
 
@@ -611,7 +582,9 @@ ngen <- 5e6
 
 ## Run MCMC
 
-mcmc.model <- threshBayes(pruned_data_tree_not_NAs, pruned_dat_not_NAs[ , c(17, 18)], type = c("cont", "disc"), ngen = ngen,
+pruned_dat_not_NAs$Average_Telomere_Length_kb <- log(pruned_dat_not_NAs$Average_Telomere_Length_kb)
+
+mcmc.model <- threshBayes(pruned_data_tree_not_NAs, pruned_dat_not_NAs[ , c(16, 17)], type = c("cont", "disc"), ngen = ngen,
                           plot = FALSE, control = list(print.interval = 5e+05))
 
 
@@ -630,7 +603,7 @@ hpd.r
 
 <br><br>
 <b>
-<font size="3"> Figure S1 </font>
+<font size="3"> Figure S3 </font>
 </b>
 
 
@@ -638,10 +611,33 @@ hpd.r
 
 ## Profile plots from a Bayesian MCMC analysis of the threshold model
 
-#png("figureS1.png", width = 7, height = 7, units = "in", res = 360)
-#pdf("figureS1.pdf")
-plot(mcmc.model)
+#png("figureS3.png", width = 7, height = 7, units = "in", res = 360)
+#pdf("figureS3.pdf")
+
+
+
+layout(matrix(c(0, 0, 0, 0,
+                1, 1, 1, 1,
+                1, 1, 1, 1,
+                2, 2, 2, 2,
+                2, 2, 2, 2,
+                0, 0, 0, 0), nrow = 6, ncol = 4, byrow = TRUE))
+
+plot(mcmc.model$par$logL ~ mcmc.model$par$gen, col = 'gray', type = 'n', ylab = 'Log(L)', xlab = 'Generation', las = 1)
+grid()
+par(new = TRUE)
+plot(mcmc.model$par$logL ~ mcmc.model$par$gen, col = 'gray', type = 'l', ylab = 'Log(L)', xlab = 'Generation', las = 1)
+mtext('(a)', side = 2, line = 1.5, at = -160, las = 1)
+
+plot(mcmc.model$par$r ~ mcmc.model$par$gen, col = 'purple', type = 'n', ylab = 'r', xlab = 'Generation', las = 1)
+grid()
+par(new = TRUE)
+plot(mcmc.model$par$r ~ mcmc.model$par$gen, col = 'purple', type = 'l', ylab = 'r', xlab = 'Generation', las = 1)
+mtext('(b)', side = 2, line = 1.5, at = 1.2, las = 1)
+
+
 #dev.off()
+
 
 
 
@@ -650,7 +646,7 @@ plot(mcmc.model)
 
 <br><br>
 <b>
-<font size="3"> Figure 6 </font>
+<font size="3"> Figure 4 </font>
 </b>
 
 
@@ -658,12 +654,18 @@ plot(mcmc.model)
 
 ## Plot posterior density
 
-#png("figure6.png", width = 7, height = 7, units = "in", res = 360)
-#pdf("figure6.pdf")
+#png("figure4.png", width = 7, height = 7, units = "in", res = 360)
+#pdf("figure4.pdf")
 
 
 par(las = 1)
+
+plot(NA, xlim = c(-1, 1.5), ylim = c(0, 3), axes = FALSE, xlab = '', ylab = '')
+grid()
+
+par(new = TRUE)
 plot(density(mcmc.model), xlim = c(-1, 1.5))
+box()
 
 ## add whiskers to show HPD
 
@@ -671,9 +673,33 @@ h <- 0-par()$usr[3]
 lines(x = hpd.r, y = rep(-h/2, 2))
 lines(x = rep(hpd.r[1], 2), y = c(-0.3, -0.7)*h)
 lines(x = rep(hpd.r[2], 2), y = c(-0.3, -0.7)*h)
-box()
 
-##dev.off()
+
+#dev.off()
+
+
+```
+
+<br><br>
+<b>
+<font size="3">Sensitivity analysis - Added by Derek Benson</font>
+</b>
+
+```{r}
+
+## Create sensitivity analysis object using 'samp' method
+
+samp <- samp_phylm(Average_Telomere_Length_kb ~ log.lifespan, phy = full_data_tree, data = pruned_dat, n.sim = 1000, track = FALSE)
+
+summary(samp)
+
+sensi_plot(samp, graphs = 1, param = "estimate")
+sensi_plot(samp, graphs = 2, param = "estimate")
+sensi_plot(samp, graphs = 3, param = "estimate")
+sensi_plot(samp, graphs = 4, param = "estimate")
+
+
+
 
 
 ```
