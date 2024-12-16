@@ -37,15 +37,14 @@ code.r, code.cpp {
 
 
 table, td, th {
-    padding: 6px 3px;
-    border-collapse: collapse;
+    border: none;
 }
 
-
 table {
-    width: 20%;
-    border: 1px solid #ddd;
+    table-layout: fixed;
+    width: 80%;
     border-collapse: collapse;
+    width: 50%;
 }
 
 th {
